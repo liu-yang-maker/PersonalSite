@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            position: relative;
         }
         header {
             background: linear-gradient(45deg, #1a1a1a, #3498db);
@@ -61,25 +62,6 @@
         .content li {
             padding: 8px 0;
         }
-        .social-links a {
-            margin: 0 15px;
-            color: #3498db;
-            font-size: 1.5em;
-            transition: color 0.3s ease;
-        }
-        .social-links a:hover {
-            color: #fff;
-        }
-        .portfolio img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin: 15px 0;
-            transition: transform 0.3s ease;
-        }
-        .portfolio img:hover {
-            transform: scale(1.05);
-        }
         footer {
             background: #1a1a1a;
             text-align: center;
@@ -88,24 +70,6 @@
             bottom: 0;
             width: 100%;
             color: #ddd;
-        }
-        .button {
-            background: #3498db;
-            color: #fff;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            text-transform: uppercase;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-        .button:hover {
-            transform: translateY(-3px);
-        }
-        .button:active {
-            transform: translateY(2px);
         }
         /* Add Background Animation */
         @keyframes starfield {
@@ -123,6 +87,29 @@
             animation: starfield 50s linear infinite;
             opacity: 0.1;
             z-index: -1;
+        }
+
+        /* Snowflake styling */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 20px;
+            opacity: 0.8;
+            pointer-events: none;
+            user-select: none;
+            animation: fall 5s linear infinite;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -166,44 +153,36 @@
         </div>
     </section>
 
-    <!-- <section id="education" class="container">
+    <section id="education" class="container">
         <h2>教育背景</h2>
         <div class="content">
             <ul>
-                <li>学位: [学位名称] - 学校: [学校名称] - 时间: [起始时间] 至 [结束时间]</li>
-                <li>学位: [学位名称] - 学校: [学校名称] - 时间: [起始时间] 至 [结束时间]</li>
+                <li>学位: 博士 - 学校: 中科院 - 时间: 2026</li>
+                <li>学位: 本科 - 学校: 西交大 - 时间: 2020</li>
             </ul>
         </div>
-    </section> -->
-
-    <section id="contact" class="container">
-        <h2>联系方式</h2>
-        <div class="content">
-            <p>电子邮件: 1668210218@qq.com</p>
-            <p>电话: 13572160700</p>
-        </div>
     </section>
-
-    <!-- <section id="social" class="container">
-        <h2>社交媒体</h2>
-        <div class="content social-links">
-            <a href="[你的LinkedIn链接]" target="_blank">LinkedIn</a>
-            <a href="[你的GitHub链接]" target="_blank">GitHub</a>
-            <a href="[你的Twitter链接]" target="_blank">Twitter</a>
-        </div>
-    </section>
-
-    <section id="portfolio" class="container">
-        <h2>作品集</h2>
-        <div class="content portfolio">
-            <p>这里展示我的部分项目成果。</p>
-            <img src="[项目图片链接]" alt="项目展示">
-            <img src="[项目图片链接]" alt="项目展示">
-        </div>
-    </section> -->
 
     <footer>
-        <p>&copy; 2025 Yang. All Rights Reserved.</p>
+        <p>© 2025 Yang's Coding World. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Snowflake generation on click
+        document.body.addEventListener('click', function(e) {
+            let snowflake = document.createElement('div');
+            snowflake.textContent = '❄️'; // Snowflake symbol
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = `${e.clientX}px`;
+            snowflake.style.top = `${e.clientY}px`;
+
+            document.body.appendChild(snowflake);
+
+            // Remove the snowflake after animation ends
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000); // Duration of the animation (in milliseconds)
+        });
+    </script>
 </body>
 </html>
